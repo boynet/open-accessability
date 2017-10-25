@@ -1,7 +1,7 @@
 (function ($) {
 
     var TEMPLATE = `@@include('./templates/menu.html')`;
-
+    var first = 0;
     var LOCAL_STORAGE_OPTIONS_KEY = 'open-accessibility-config';
 
 
@@ -56,6 +56,8 @@
     }
 
     function applyTextZoom(selector, zoom) {
+        first++;
+        if (first<=2 && zoom==1) return;
         $(selector)
             .not('.open-accessibility *') // To avoid messing up the menu bar itself
             .each(function () {
