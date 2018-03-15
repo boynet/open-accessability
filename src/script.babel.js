@@ -52,7 +52,11 @@
     }
 
     function setUserOptions(options) {
-        localStorage.setItem(LOCAL_STORAGE_OPTIONS_KEY, JSON.stringify(options));
+        try {
+            localStorage.setItem(LOCAL_STORAGE_OPTIONS_KEY, JSON.stringify(options));
+        }
+        catch (e) {
+        }
     }
 
     function applyTextZoom(selector, zoom) {
