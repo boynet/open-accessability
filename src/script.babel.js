@@ -7,7 +7,6 @@
     var UNITS = ['px', 'cm', 'em', 'ex', 'in', 'mm', 'pc', 'pt', 'vh', 'vw', 'vmin'];
 
     function getUnit(fontSize) {
-        console.log('getunit');
         fontSize = fontSize || '';
         return UNITS
             .filter(unit => fontSize.match(new RegExp(unit + '$', 'gi')))
