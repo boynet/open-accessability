@@ -132,7 +132,6 @@
         var cursorWorkaround = $(".open-accessibility-cursor-workaround");
 
 
-        html.addClass('open-accessibility-zoom');
 
         // -------------
         // Brightness
