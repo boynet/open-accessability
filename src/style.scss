@@ -27,6 +27,10 @@ $images-dir: 'images' !default;
     transition: zoom 0.3s ease-in-out;
   }
 
+  &-hidden{
+    display:none !important;
+  }
+
   &-cursor {
     *:hover, * {
       cursor: url("images/cursor.png"), default;
