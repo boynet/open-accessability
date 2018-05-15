@@ -1,5 +1,5 @@
 (function ($) {
-    var TEMPLATE = `@@include('./templates/menu.html')`;
+    //var TEMPLATE = `@@include('./templates/menu.html')`;
     var first_run = true;
     var LOCAL_STORAGE_OPTIONS_KEY = 'open-accessibility-config';
 
@@ -109,7 +109,7 @@
 
         // -------------
 
-        element.prepend(TEMPLATE);
+        //element.prepend(TEMPLATE);
 
         var html = $('html');
         var body = $('body');
