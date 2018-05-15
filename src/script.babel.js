@@ -1,19 +1,17 @@
 (function ($) {
-
     var TEMPLATE = `@@include('./templates/menu.html')`;
-    var first = 0;
+    var first_run = true;
     var LOCAL_STORAGE_OPTIONS_KEY = 'open-accessibility-config';
 
 
     var UNITS = ['px', 'cm', 'em', 'ex', 'in', 'mm', 'pc', 'pt', 'vh', 'vw', 'vmin'];
 
     function getUnit(fontSize) {
-
+        console.log('getunit');
         fontSize = fontSize || '';
         return UNITS
-            .filter(unit=>fontSize.match(new RegExp(unit + '$', 'gi')))
+            .filter(unit => fontSize.match(new RegExp(unit + '$', 'gi')))
             .pop()
-
     }
 
     function isGoogleChrome() {
@@ -60,8 +58,7 @@
     }
 
     function applyTextZoom(selector, zoom) {
-        first++;
-        if (first<=2 && zoom==1) return;
+        if (first_run && zoom == 1) return;
         $(selector)
             .not('.open-accessibility *') // To avoid messing up the menu bar itself
             .each(function () {
@@ -130,7 +127,6 @@
         var contrastButton = $(".open-accessibility-contrast-button");
         var resetButton = $(".open-accessibility-reset-button");
         var cursorWorkaround = $(".open-accessibility-cursor-workaround");
-
 
 
         // -------------
@@ -232,13 +228,13 @@
             }
         });
 
-        expandButton.hide();
-        menu.hide();
+
+        menu.addClass('open-accessibility-hidden');
 
         if (customOptions.isMenuOpened) {
             options.isMenuOpened = true;
-            menu.show();
-            expandButton.hide();
+            menu.removeClass('open-accessibility-hidden');
+            expandButton.addClass('open-accessibility-hidden')
         }
         else {
             options.isMenuOpened = false;
@@ -248,7 +244,7 @@
         // -------------
         // Mouse cursor workaround
 
-        cursorWorkaround.hide();
+        cursorWorkaround.addClass('open-accessibility-hidden')
 
         var googleChrome = isGoogleChrome();
         if (!googleChrome) {
@@ -266,8 +262,6 @@
             });
         }
 
-        // Initialize
-        applyTextZoom(options.textSelector, 1);
 
         apply();
 
@@ -276,16 +270,14 @@
             // ----------------
 
             if (options.isMenuOpened) {
-                expandButton.fadeOut(300);
-                menu.fadeIn(300);
-
+                expandButton.addClass('open-accessibility-hidden')
+                menu.removeClass('open-accessibility-hidden');
                 container.removeClass("open-accessibility-collapsed");
                 container.addClass("open-accessibility-expanded");
             }
             else {
-                expandButton.fadeIn(300);
-                menu.fadeOut(300);
-
+                expandButton.removeClass('open-accessibility-hidden')
+                menu.addClass('open-accessibility-hidden')
                 container.removeClass("open-accessibility-expanded");
                 container.addClass("open-accessibility-collapsed");
             }
@@ -298,15 +290,17 @@
                 filters.push('invert(1)');
             }
 
-            filters.push('contrast(' + options.contrast + '%)');
-            filters.push('brightness(' + options.brightness + '%)');
-            filters.push('grayscale(' + options.grayscale + '%)');
-            var filterValue = filters.join(' ');
-            body.css('filter', filterValue);
-            body.css('-ms-filter', filterValue);
-            body.css('-moz-filter', filterValue);
-            body.css('-webkit-filter', filterValue);
-            body.css('-o-filter', filterValue);
+            if (!first_run || (options.contrast != 100 && options.brightness != 100 && options.grayscale != 0)) {
+                filters.push('contrast(' + options.contrast + '%)');
+                filters.push('brightness(' + options.brightness + '%)');
+                filters.push('grayscale(' + options.grayscale + '%)');
+                var filterValue = filters.join(' ');
+                body.css('filter', filterValue);
+                body.css('-ms-filter', filterValue);
+                body.css('-moz-filter', filterValue);
+                body.css('-webkit-filter', filterValue);
+                body.css('-o-filter', filterValue);
+            }
 
             // ----------
             // Zoom
@@ -321,18 +315,20 @@
                 html.addClass('open-accessibility-cursor');
 
                 if (!googleChrome) {
-                    cursorWorkaround.show();
+                    cursorWorkaround.removeClass('open-accessibility-hidden')
                 }
             }
             else {
-                html.removeClass('open-accessibility-cursor');
-                if (!googleChrome) {
-
-                    cursorWorkaround.hide();
+                if (!first_run) {
+                    html.removeClass('open-accessibility-cursor');
+                    if (!googleChrome) {
+                        cursorWorkaround.addClass('open-accessibility-hidden');
+                    }
                 }
             }
 
             setUserOptions(options);
+            first_run = false;
         }
 
     };
