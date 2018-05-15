@@ -1,4 +1,4 @@
-$background-color: #2196F3;
+$background-color: white;
 $toggle-button-size: 80px;
 $offset: 30px;
 $z-index: 10;
@@ -27,8 +27,12 @@ $images-dir: 'images' !default;
     transition: zoom 0.3s ease-in-out;
   }
 
-  &-hidden{
-    display:none !important;
+  &-hidden {
+    display: none !important;
+  }
+
+  &-icon-desc {
+    font-size: 20px;
   }
 
   &-cursor {
@@ -65,9 +69,9 @@ $images-dir: 'images' !default;
   $close-button-width: 40px;
   &-close-button {
     box-sizing: border-box;
-    width: $close-button-width;
-    height: $close-button-height;
     cursor: pointer;
+    font-size: 25px;
+    margin-right: 5px;
   }
 
   &-menu {
@@ -84,8 +88,10 @@ $images-dir: 'images' !default;
       height: $menu-button-height;
       cursor: pointer;
       transition: background-color 0.1s;
-
       border-radius: 2px;
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
 
       &:hover {
         background-color: #f5f5f5;
@@ -127,14 +133,8 @@ $images-dir: 'images' !default;
     width: $toggle-button-size;
     height: $toggle-button-size;
     text-align: center;
-
-    svg {
-      fill: #fff;
-      width: 40px;
-      height: $toggle-button-size;
-      line-height: $toggle-button-size;
-
-    }
+    font-size: 50px;
+    color: #2196f3;
   }
 
   &.open-accessibility-expanded {
@@ -174,19 +174,17 @@ $images-dir: 'images' !default;
   $vertical-width: 25%;
   $vertical-height: 25%;
   $close-button-height: 0px;
-  $toggle-button-width:50px;
-  $toggle-button-hight:55px;
-  $toggle-button-icon:60px;
+  $toggle-button-width: 50px;
+  $toggle-button-hight: 55px;
+  $toggle-button-icon: 60px;
   $offset: 0px;
   $z-index: 10;
   $menu-width: 100%;
   $menu-height: 10%;
-  .open-accessibility
-  {
+  .open-accessibility {
     right: $offset;
     top: $offset;
-    .open-accessibility-menu
-    {
+    .open-accessibility-menu {
       height: $horizontal-height;
       width: $menu-width;
     }
@@ -211,6 +209,11 @@ $images-dir: 'images' !default;
         display: none !important;
       }
     }
+
+    &-icon-desc {
+      font-size: 15px;
+    }
+
     &-close-button {
       height: $close-button-height;
 
@@ -222,14 +225,6 @@ $images-dir: 'images' !default;
       width: $toggle-button-width;
       height: $toggle-button-icon;
       text-align: center;
-
-      svg {
-        fill: #fff;
-        width: 35px;
-        height: $toggle-button-icon;
-        line-height: $toggle-button-size;
-
-      }
     }
     &.open-accessibility-expanded {
       position: static;
