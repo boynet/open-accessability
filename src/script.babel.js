@@ -94,7 +94,8 @@
             zoom: 1,
             cursor: false,
             textSelector: '.open-accessibility-text',
-            invert: false
+            invert: false,
+            highlightedHeaders: false
         };
 
         var userOptions = getUserOptions();
@@ -126,7 +127,8 @@
         var contrastButton = $(".open-accessibility-contrast-button");
         var resetButton = $(".open-accessibility-reset-button");
         var cursorWorkaround = $(".open-accessibility-cursor-workaround");
-
+        var highlightedLinksButton = $(".open-accessibility-highlighted-links-button");
+        var highlightedHeadersButton = $(".open-accessibility-highlighted-headers-button");
 
         // -------------
         // Brightness
@@ -217,6 +219,16 @@
             apply();
         });
 
+        highlightedLinksButton.click(() => {
+            options.highlightedLinks = !options.highlightedLinks;
+            apply();
+        });
+
+        highlightedHeadersButton.click(() => {
+            options.highlightedHeaders = !options.highlightedHeaders;
+            apply();
+        });
+
         // Click outside of the menu -> close
         $(document).click((event) => {
             if (!$(event.target).closest('.open-accessibility').length) {
@@ -287,6 +299,18 @@
             var filters = [];
             if (options.invert) {
                 filters.push('invert(1)');
+            }
+
+            if (options.highlightedLinks) {
+                body.addClass('open-accessibility-highlighted-links');
+            } else {
+                body.removeClass('open-accessibility-highlighted-links');
+            }
+
+            if (options.highlightedHeaders) {
+                body.addClass('open-accessibility-highlighted-headers');
+            } else {
+                body.removeClass('open-accessibility-highlighted-headers');
             }
 
             if (!first_run || (options.contrast != 100 && options.brightness != 100 && options.grayscale != 0)) {
