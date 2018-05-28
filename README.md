@@ -45,7 +45,7 @@ Full list of default options:
 ```
 isMenuOpened: false
 highlightedLinks: false
-isMobileEnabled: false
+isMobileEnabled: true
 grayscale: 0
 brightness: 100
 contrast: 100
@@ -56,6 +56,7 @@ zoom: 1
 cursor: false
 textSelector: '.open-accessibility-text'
 invert: false
+highlightedHeaders: false
 ```
 
 #### include inside body
