@@ -105,6 +105,16 @@ invert: false
                 <div class="open-accessibility-icon-desc">ניגודיות</div>
             </div>
 
+            <div class="open-accessibility-menu-button open-accessibility-highlighted-links-button">
+                <i class="fa fa-link open-accessibility-icon" aria-hidden="true"></i>
+                <div class="open-accessibility-icon-desc">הדגשת קישורים</div>
+            </div>
+
+            <div class="open-accessibility-menu-button open-accessibility-highlighted-headers-button">
+                <i class="fa fa-header open-accessibility-icon" aria-hidden="true"></i>
+                <div class="open-accessibility-icon-desc">הדגשת כותרות</div>
+            </div>
+
             <div class="open-accessibility-menu-button open-accessibility-monochrome-button">
                 <i class="fa fa-low-vision open-accessibility-icon" aria-hidden="true"></i>
                 <div class="open-accessibility-icon-desc">גווני אפור</div>
