@@ -60,7 +60,19 @@ $images-dir: 'images' !default;
     a:link,
     a:visited,
     a:hover,
-    a:active {
+    a:active,
+    a * {
+      text-decoration: underline !important;
+    }
+  }
+
+  &-highlighted-headers {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       text-decoration: underline !important;
     }
   }
